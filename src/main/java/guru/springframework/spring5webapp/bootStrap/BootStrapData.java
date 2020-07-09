@@ -45,16 +45,21 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(lisa);
         bookRepository.save(kafka);
 
-        Address address = new Address("Afikim", "Afikim", "Israel", "1514800");
         Publisher publisher = new Publisher("Yotam");
+        Address address = new Address("Afikim", "Afikim", "Israel", "1514800");
         publisher.setAddress(address);
         address.setPublisher(publisher);
+        kafka.setPublisher(publisher);
+        breath.setPublisher(publisher);
+        publisher.getBooks().add(kafka);
+        publisher.getBooks().add(breath);
 
         addressRepository.save(address);
         publisherRepository.save(publisher);
 
         System.out.println("Started data bootstrap");
         System.out.println("Number of books: " + bookRepository.count());
-        System.out.println("Publisher: " + publisher.getName() + "Lives at: " + publisher.getAddress().toString());
+        System.out.println("Publisher: " + publisher.getName() + " Lives at: " + publisher.getAddress().toString());
+        System.out.println("Publisher number of books: " + publisher.getBooks().size());
     }
 }
