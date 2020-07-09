@@ -56,6 +56,8 @@ public class BootStrapData implements CommandLineRunner {
 
         addressRepository.save(address);
         publisherRepository.save(publisher);
+        bookRepository.save(breath);
+        bookRepository.save(kafka);
 
         System.out.println("Started data bootstrap");
         System.out.println("Number of books: " + bookRepository.count());
